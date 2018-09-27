@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.js"></script>
+</head>
+
+<body>
+    <div id="graph"></div>
+
+    <script>
+        var data = [];
+        var t = new Date();
+        for (var i = 10; i >= 0; i--) {
+            var x = new Date(t.getTime() - i * 1000);
+            data.push([x, Math.random()]);
+        }
+
+        var graph = new Dygraph(
+            document.getElementById("graph"),
+            data,
+            {
+                drawPoints: true,
+                showRoller: true,
+                valueRange: [0.0, 1.2],
+                labels: ['Time', 'Random']
+            });
+        window.intervalId = setInterval(function () {
+            var x = new Date(); 
+            var y = Math.random();
+            data.push([x, y]);
+            graph.updateOptions({ 'file': data });
+        }, 1000);
+    </script>
+</body>
+
+</html>
