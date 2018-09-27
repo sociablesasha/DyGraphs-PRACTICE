@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dygraph/2.1.0/dygraph.min.js"></script>
+</head>
+
+<body>
+    <div id="graph"></div>
+
+    <script>
+        function getFormatedData(row) {
+            var r = "Time,G\n";
+            for (var i = 0; i < row.length; i++) {
+                r += row[i].time;
+                r += "," + row[i].g;
+                r += "\n";
+            }
+            console.log(r);
+            return r;
+        }
+
+        $.getJSON("Earthquake.json", function (data) {
+            var graph = new Dygraph(
+                document.getElementById("graph"),
+                getFormatedData(data),
+                {
+                    width: 600,
+                    height: 400,
+                    rollPeriod: 10,
+                    valueRange: [0.0, 1.2]
+                }
+            );
+        });
+    </script>
+</body>
+
+</html>
