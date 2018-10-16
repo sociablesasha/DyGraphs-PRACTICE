@@ -29,7 +29,7 @@
     <div id="graph"></div>
 
     <script>
-        var getData = function (numSeries, numRows, isStacked) {
+        var getData = (numSeries, numRows, isStacked) => {
             var data = [];
 
             for (var j = 0; j < numRows; ++j) {
@@ -49,7 +49,7 @@
             return data;
         };
 
-        var makeGraph = function (className, numSeries, numRows, isStacked) {
+        var makeGraph = (className, numSeries, numRows, isStacked) => {
             var graph = document.getElementById('graph');
             var div = document.createElement('div');
             div.className = className;
@@ -65,8 +65,7 @@
             }
             var g = new Dygraph(
                 div,
-                getData(numSeries, numRows, isStacked),
-                {
+                getData(numSeries, numRows, isStacked), {
                     width: 480,
                     height: 320,
                     labels: labels.slice(),
@@ -82,14 +81,16 @@
                         highlightCircleSize: 5
                     }
                 });
-            var onclick = function (ev) {
+            var onclick = (ev) => {
                 if (g.isSeriesLocked()) {
                     g.clearSelection();
                 } else {
                     g.setSelection(g.getSelection(), g.getHighlightSeries(), true);
                 }
             };
-            g.updateOptions({ clickCallback: onclick }, true);
+            g.updateOptions({
+                clickCallback: onclick
+            }, true);
             g.setSelection(false, 's005');
             //console.log(g);
         };

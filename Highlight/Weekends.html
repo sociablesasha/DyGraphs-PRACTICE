@@ -44,10 +44,9 @@
 
         new Dygraph(
             document.getElementById("graph"),
-            data,
-            {
+            data, {
                 labels: ['Date', 'Value'],
-                underlayCallback: function (canvas, area, g) {
+                underlayCallback: (canvas, area, g) => {
 
                     canvas.fillStyle = "rgba(255, 255, 102, 1.0)";
 

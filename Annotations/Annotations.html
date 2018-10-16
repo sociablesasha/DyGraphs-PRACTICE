@@ -18,8 +18,11 @@
     <script>
         var graph = new Dygraph(
             document.getElementById("graph"),
-            function () {
-                var zp = function (x) { if (x < 10) return "0" + x; else return x; };
+            () => {
+                var zp = (x) => {
+                    if (x < 10) return "0" + x;
+                    else return x;
+                };
                 var r = "date,parabola,line,another line,sine wave\n";
                 for (var i = 1; i <= 31; i++) {
                     r += "200610" + zp(i);
@@ -30,8 +33,7 @@
                     r += "\n";
                 }
                 return r;
-            },
-            {
+            }, {
                 rollPeriod: 1,
                 showRoller: true,
                 width: 480,

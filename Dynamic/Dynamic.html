@@ -19,18 +19,19 @@
 
         var graph = new Dygraph(
             document.getElementById("graph"),
-            data,
-            {
+            data, {
                 drawPoints: true,
                 showRoller: true,
                 valueRange: [0.0, 1.2],
                 labels: ['Time', 'Random']
             });
-        window.intervalId = setInterval(function () {
-            var x = new Date(); 
+        window.intervalId = setInterval(() => {
+            var x = new Date();
             var y = Math.random();
             data.push([x, y]);
-            graph.updateOptions({ 'file': data });
+            graph.updateOptions({
+                'file': data
+            });
         }, 1000);
     </script>
 </body>
